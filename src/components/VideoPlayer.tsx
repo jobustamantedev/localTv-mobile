@@ -1,39 +1,25 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { View, ActivityIndicator, StyleSheet, Text, TouchableOpacity } from 'react-native';
+import { View, StyleSheet, Text, TouchableOpacity } from 'react-native';
 import { Video, ResizeMode } from 'expo-video';
 import { useChannels } from '../context/ChannelContext';
 
 export const VideoPlayer: React.FC = () => {
   const { currentChannel } = useChannels();
-  const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [streamUrl, setStreamUrl] = useState<string | null>(null);
   const [isPlaying, setIsPlaying] = useState(true);
   const videoRef = useRef<Video>(null);
 
   useEffect(() => {
-    if (!currentChannel) {
-      setStreamUrl(null);
-      setError(null);
-      return;
-    }
-
-    setLoading(true);
     setError(null);
-
-    try {
-      setStreamUrl(currentChannel.stream_url);
+    if (currentChannel) {
       setIsPlaying(true);
-    } catch (err) {
-      setError(err instanceof Error ? err.message : 'Error cargando stream');
-    } finally {
-      setLoading(false);
     }
   }, [currentChannel]);
 
   const handlePlaybackStatusUpdate = (status: any) => {
     if (status.error) {
-      setError(status.error);
+      console.error('Playback error:', status.error);
+      setError('Error reproduciendo video');
     }
   };
 
@@ -52,49 +38,39 @@ export const VideoPlayer: React.FC = () => {
   if (error) {
     return (
       <View style={styles.errorContainer}>
-        <Text style={styles.errorText}>⚠️ Error cargando stream</Text>
-        <Text style={styles.errorSubtext}>{currentChannel.name}</Text>
+        <Text style={styles.errorText}>⚠️ Error reproduciendo video</Text>
+        <Text style={styles.errorHint}>{error}</Text>
       </View>
     );
   }
 
   return (
     <View style={styles.container}>
-      {streamUrl && (
-        <>
-          <View style={styles.videoWrapper}>
-            <Video
-              ref={videoRef}
-              source={{ uri: streamUrl }}
-              style={styles.video}
-              resizeMode={ResizeMode.CONTAIN}
-              isLooping
-              shouldPlay={isPlaying}
-              onPlaybackStatusUpdate={handlePlaybackStatusUpdate}
-              progressUpdateIntervalMillis={500}
-              rate={1.0}
-              volume={1.0}
-            />
-            {loading && (
-              <View style={styles.loadingOverlay}>
-                <ActivityIndicator size="large" color="#ea4335" />
-                <Text style={styles.loadingText}>Conectando...</Text>
-              </View>
-            )}
-            <View style={styles.controlsOverlay}>
-              <TouchableOpacity style={styles.playButton} onPress={togglePlayPause}>
-                <Text style={styles.playIcon}>{isPlaying ? '⏸' : '▶'}</Text>
-              </TouchableOpacity>
-            </View>
-          </View>
-          <View style={styles.info}>
-            <Text style={styles.infoText}>{currentChannel.name}</Text>
-            <Text style={styles.statusText}>
-              {currentChannel.is_active ? '🔴 EN VIVO' : '⚪ Offline'}
-            </Text>
-          </View>
-        </>
-      )}
+      <View style={styles.videoWrapper}>
+        <Video
+          ref={videoRef}
+          source={{ uri: currentChannel.stream_url }}
+          style={styles.video}
+          resizeMode={ResizeMode.CONTAIN}
+          isLooping
+          shouldPlay={isPlaying}
+          onPlaybackStatusUpdate={handlePlaybackStatusUpdate}
+          progressUpdateIntervalMillis={500}
+          rate={1.0}
+          volume={1.0}
+        />
+        <View style={styles.controlsOverlay}>
+          <TouchableOpacity style={styles.playButton} onPress={togglePlayPause}>
+            <Text style={styles.playIcon}>{isPlaying ? '⏸' : '▶'}</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
+      <View style={styles.info}>
+        <Text style={styles.infoText}>{currentChannel.name}</Text>
+        <Text style={styles.statusText}>
+          {currentChannel.is_active ? '🔴 EN VIVO' : '⚪ Offline'}
+        </Text>
+      </View>
     </View>
   );
 };
@@ -118,19 +94,6 @@ const styles = StyleSheet.create({
   video: {
     width: '100%',
     height: '100%',
-  },
-  loadingOverlay: {
-    position: 'absolute',
-    inset: 0,
-    backgroundColor: 'rgba(0, 0, 0, 0.7)',
-    justifyContent: 'center',
-    alignItems: 'center',
-    zIndex: 5,
-  },
-  loadingText: {
-    color: '#fff',
-    marginTop: 12,
-    fontSize: 14,
   },
   controlsOverlay: {
     position: 'absolute',
@@ -180,16 +143,18 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 8,
+    paddingHorizontal: 20,
   },
   errorText: {
     color: '#fff',
     fontSize: 16,
     textAlign: 'center',
     marginBottom: 8,
+    fontWeight: '600',
   },
-  errorSubtext: {
+  errorHint: {
     color: '#f87171',
-    fontSize: 14,
+    fontSize: 12,
     textAlign: 'center',
   },
 });

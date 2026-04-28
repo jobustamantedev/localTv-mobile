@@ -3,7 +3,7 @@
     "id": 1,
     "name": "ESPN",
     "slug": "espn",
-    "stream_url": "https://tvtvhd.com/vivo/canales.php?stream=espn",
+    "stream_url": "https://commondatastorage.googleapis.com/gtv-videos-library/sample/BigBuckBunny.mp4",
     "logo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/ESPN_wordmark.svg/200px-ESPN_wordmark.svg.png",
     "category": "Deportes",
     "is_active": true
@@ -12,7 +12,7 @@
     "id": 2,
     "name": "ESPN 2",
     "slug": "espn2",
-    "stream_url": "https://tvtvhd.com/vivo/canales.php?stream=espn2",
+    "stream_url": "https://commondatastorage.googleapis.com/gtv-videos-library/sample/ElephantsDream.mp4",
     "logo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/ESPN_wordmark.svg/200px-ESPN_wordmark.svg.png",
     "category": "Deportes",
     "is_active": true
@@ -21,7 +21,7 @@
     "id": 3,
     "name": "ESPN 3",
     "slug": "espn3",
-    "stream_url": "https://tvtvhd.com/vivo/canales.php?stream=espn3",
+    "stream_url": "https://commondatastorage.googleapis.com/gtv-videos-library/sample/ForBiggerBlazes.mp4",
     "logo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/ESPN_wordmark.svg/200px-ESPN_wordmark.svg.png",
     "category": "Deportes",
     "is_active": true
@@ -30,7 +30,7 @@
     "id": 4,
     "name": "ESPN 4",
     "slug": "espn4",
-    "stream_url": "https://tvtvhd.com/vivo/canales.php?stream=espn4",
+    "stream_url": "https://commondatastorage.googleapis.com/gtv-videos-library/sample/ForBiggerEscapes.mp4",
     "logo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/ESPN_wordmark.svg/200px-ESPN_wordmark.svg.png",
     "category": "Deportes",
     "is_active": true
@@ -39,7 +39,7 @@
     "id": 5,
     "name": "ESPN 5",
     "slug": "espn5",
-    "stream_url": "https://tvtvhd.com/vivo/canales.php?stream=espn5",
+    "stream_url": "https://commondatastorage.googleapis.com/gtv-videos-library/sample/Sintel.mp4",
     "logo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/ESPN_wordmark.svg/200px-ESPN_wordmark.svg.png",
     "category": "Deportes",
     "is_active": true
@@ -48,7 +48,7 @@
     "id": 6,
     "name": "ESPN 6",
     "slug": "espn6",
-    "stream_url": "https://tvtvhd.com/vivo/canales.php?stream=espn6",
+    "stream_url": "https://commondatastorage.googleapis.com/gtv-videos-library/sample/TearsOfSteel.mp4",
     "logo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/ESPN_wordmark.svg/200px-ESPN_wordmark.svg.png",
     "category": "Deportes",
     "is_active": true
@@ -57,7 +57,7 @@
     "id": 7,
     "name": "ESPN 7",
     "slug": "espn7",
-    "stream_url": "https://tvtvhd.com/vivo/canales.php?stream=espn7",
+    "stream_url": "https://commondatastorage.googleapis.com/gtv-videos-library/sample/VolleyballShortFilm.mp4",
     "logo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/ESPN_wordmark.svg/200px-ESPN_wordmark.svg.png",
     "category": "Deportes",
     "is_active": true
@@ -66,7 +66,7 @@
     "id": 8,
     "name": "DSports",
     "slug": "dsports",
-    "stream_url": "https://tvtvhd.com/vivo/canales.php?stream=dsports",
+    "stream_url": "https://commondatastorage.googleapis.com/gtv-videos-library/sample/WildlifeByWilson.mp4",
     "logo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/DirectTV_Sports_logo.png/200px-DirectTV_Sports_logo.png",
     "category": "Deportes",
     "is_active": true
@@ -75,7 +75,7 @@
     "id": 9,
     "name": "DSports+",
     "slug": "dsports-plus",
-    "stream_url": "https://tvtvhd.com/vivo/canales.php?stream=dsportsplus",
+    "stream_url": "https://commondatastorage.googleapis.com/gtv-videos-library/sample/WeAreGoingOnBullrun.mp4",
     "logo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/DirectTV_Sports_logo.png/200px-DirectTV_Sports_logo.png",
     "category": "Deportes",
     "is_active": true
@@ -84,7 +84,7 @@
     "id": 10,
     "name": "DSports 2",
     "slug": "dsports2",
-    "stream_url": "https://tvtvhd.com/vivo/canales.php?stream=dsports2",
+    "stream_url": "https://commondatastorage.googleapis.com/gtv-videos-library/sample/GoogleIO.mp4",
     "logo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/DirectTV_Sports_logo.png/200px-DirectTV_Sports_logo.png",
     "category": "Deportes",
     "is_active": true
