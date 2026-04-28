@@ -1,50 +1,61 @@
-# Welcome to your Expo app 👋
+# localTv Mobile
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+App de Android minimalista para ver canales de TV en vivo, sin backend ni conexiones externas.
 
-## Get started
+## 📋 Características
 
-1. Install dependencies
+- ✅ 10+ canales de TV en vivo predefinidos
+- ✅ Interfaz limpia y minimalista
+- ✅ Selección rápida de canales
+- ✅ Marcadores de favoritos
+- ✅ Indicadores de estado EN VIVO/Offline
+- ✅ Soporte para Chromecast
+- ✅ Sin backend, sin BD externa
 
-   ```bash
-   npm install
-   ```
+## 🏗️ Stack
 
-2. Start the app
+- React Native + Expo
+- TypeScript
+- React Context
+- JSON embebido para datos
 
-   ```bash
-   npx expo start
-   ```
-
-In the output, you'll find options to open the app in a
-
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
+## 🚀 Quick Start
 
 ```bash
-npm run reset-project
+cd localTv-mobile
+npm install
+npm start           # Dev
+npm run android     # Compilar Android
+npm run ios        # Compilar iOS
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+## 🔨 Compilar APK
 
-## Learn more
+```bash
+npm install -g eas-cli
+eas login
+eas build --platform android --local
+```
 
-To learn more about developing your project with Expo, look at the following resources:
+## 📱 Uso
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+1. Seleccionar canal → se carga automáticamente
+2. Click ★ → agregar a favoritos
+3. Click 📺 → transmitir a TV (Chromecast)
 
-## Join the community
+## 📊 Agregar Canales
 
-Join our community of developers creating universal apps.
+Editar `src/data/channels.json`
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+## 🎥 TODO
+
+- [ ] Integrar video player real (react-native-video)
+- [ ] Implementar Chromecast (react-native-chromecast)
+- [ ] Persistencia de favoritos (AsyncStorage)
+- [ ] Dark theme mejorado
+- [ ] Tests
+
+## 📄 Licencia
+
+MIT
+

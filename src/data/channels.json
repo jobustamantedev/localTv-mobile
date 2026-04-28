@@ -1,0 +1,92 @@
+[
+  {
+    "id": 1,
+    "name": "Azteca 7",
+    "slug": "azteca7",
+    "stream_url": "https://tvtvhd.com/vivo/canales.php?stream=azteca7",
+    "logo_url": "https://via.placeholder.com/200x100?text=Azteca+7",
+    "category": "Deportes",
+    "is_active": true
+  },
+  {
+    "id": 2,
+    "name": "Azteca Deportes",
+    "slug": "aztecadeportes",
+    "stream_url": "https://tvtvhd.com/vivo/canales.php?stream=aztecadeportes",
+    "logo_url": "https://via.placeholder.com/200x100?text=Azteca+Deportes",
+    "category": "Deportes",
+    "is_active": true
+  },
+  {
+    "id": 3,
+    "name": "BeIN Sports Español",
+    "slug": "beinsports",
+    "stream_url": "https://tvtvhd.com/vivo/canales.php?stream=beinsports",
+    "logo_url": "https://via.placeholder.com/200x100?text=BeIN+Sports",
+    "category": "Deportes",
+    "is_active": true
+  },
+  {
+    "id": 4,
+    "name": "BeIN Sports Xtra",
+    "slug": "beinsportsxtra",
+    "stream_url": "https://tvtvhd.com/vivo/canales.php?stream=beinsportsxtra",
+    "logo_url": "https://via.placeholder.com/200x100?text=BeIN+Sports+Xtra",
+    "category": "Deportes",
+    "is_active": true
+  },
+  {
+    "id": 5,
+    "name": "CBS Sports Network",
+    "slug": "cbssports",
+    "stream_url": "https://tvtvhd.com/vivo/canales.php?stream=cbssports",
+    "logo_url": "https://via.placeholder.com/200x100?text=CBS+Sports",
+    "category": "Deportes",
+    "is_active": true
+  },
+  {
+    "id": 6,
+    "name": "Caliente TV",
+    "slug": "calientetv",
+    "stream_url": "https://tvtvhd.com/vivo/canales.php?stream=calientetv",
+    "logo_url": "https://via.placeholder.com/200x100?text=Caliente+TV",
+    "category": "Deportes",
+    "is_active": true
+  },
+  {
+    "id": 7,
+    "name": "Canal 11",
+    "slug": "canal11",
+    "stream_url": "https://tvtvhd.com/vivo/canales.php?stream=canal11",
+    "logo_url": "https://via.placeholder.com/200x100?text=Canal+11",
+    "category": "Deportes",
+    "is_active": true
+  },
+  {
+    "id": 8,
+    "name": "Canal 5",
+    "slug": "canal5",
+    "stream_url": "https://tvtvhd.com/vivo/canales.php?stream=canal5",
+    "logo_url": "https://via.placeholder.com/200x100?text=Canal+5",
+    "category": "Deportes",
+    "is_active": true
+  },
+  {
+    "id": 9,
+    "name": "DAZN 1",
+    "slug": "dazn1",
+    "stream_url": "https://tvtvhd.com/vivo/canales.php?stream=dazn1",
+    "logo_url": "https://via.placeholder.com/200x100?text=DAZN+1",
+    "category": "Deportes",
+    "is_active": true
+  },
+  {
+    "id": 10,
+    "name": "DAZN 1 DE",
+    "slug": "dazn1de",
+    "stream_url": "https://tvtvhd.com/vivo/canales.php?stream=dazn1de",
+    "logo_url": "https://via.placeholder.com/200x100?text=DAZN+1+DE",
+    "category": "Deportes",
+    "is_active": true
+  }
+]
