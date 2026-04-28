@@ -1,24 +1,16 @@
-import React, { useState, useEffect } from 'react';
-import { View, ActivityIndicator, StyleSheet, Text } from 'react-native';
+import React, { useState, useEffect, useRef } from 'react';
+import { View, ActivityIndicator, StyleSheet, Text, TouchableOpacity } from 'react-native';
+import { Video, ResizeMode } from 'expo-video';
 import { useChannels } from '../context/ChannelContext';
-
-interface StreamResponse {
-  url: string;
-  channel: string;
-  headers: {
-    'User-Agent': string;
-    'Referer': string;
-  };
-}
 
 export const VideoPlayer: React.FC = () => {
   const { currentChannel } = useChannels();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [streamUrl, setStreamUrl] = useState<string | null>(null);
+  const [isPlaying, setIsPlaying] = useState(true);
+  const videoRef = useRef<Video>(null);
 
-  // NOTE: En una app real, usarías react-native-video o expo-video
-  // Para este MVP, mostramos solo el estado
   useEffect(() => {
     if (!currentChannel) {
       setStreamUrl(null);
@@ -26,23 +18,28 @@ export const VideoPlayer: React.FC = () => {
       return;
     }
 
-    const fetchStream = async () => {
-      setLoading(true);
-      setError(null);
+    setLoading(true);
+    setError(null);
 
-      try {
-        // En producción, consultar backend para obtener stream real
-        // Por ahora, usar el stream_url directamente
-        setStreamUrl(currentChannel.stream_url);
-      } catch (err) {
-        setError(err instanceof Error ? err.message : 'Error cargando stream');
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchStream();
+    try {
+      setStreamUrl(currentChannel.stream_url);
+      setIsPlaying(true);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Error cargando stream');
+    } finally {
+      setLoading(false);
+    }
   }, [currentChannel]);
+
+  const handlePlaybackStatusUpdate = (status: any) => {
+    if (status.error) {
+      setError(status.error);
+    }
+  };
+
+  const togglePlayPause = () => {
+    setIsPlaying(!isPlaying);
+  };
 
   if (!currentChannel) {
     return (
@@ -52,19 +49,11 @@ export const VideoPlayer: React.FC = () => {
     );
   }
 
-  if (loading) {
-    return (
-      <View style={styles.container}>
-        <ActivityIndicator size="large" color="#ea4335" />
-        <Text style={styles.loadingText}>Cargando stream...</Text>
-      </View>
-    );
-  }
-
   if (error) {
     return (
       <View style={styles.errorContainer}>
-        <Text style={styles.errorText}>Error: {error}</Text>
+        <Text style={styles.errorText}>⚠️ Error cargando stream</Text>
+        <Text style={styles.errorSubtext}>{currentChannel.name}</Text>
       </View>
     );
   }
@@ -73,10 +62,30 @@ export const VideoPlayer: React.FC = () => {
     <View style={styles.container}>
       {streamUrl && (
         <>
-          {/* En producción, aquí iría el Video player real */}
-          <View style={styles.playerPlaceholder}>
-            <Text style={styles.channelInfo}>{currentChannel.name}</Text>
-            <Text style={styles.streamInfo}>Stream: {currentChannel.slug}</Text>
+          <View style={styles.videoWrapper}>
+            <Video
+              ref={videoRef}
+              source={{ uri: streamUrl }}
+              style={styles.video}
+              resizeMode={ResizeMode.CONTAIN}
+              isLooping
+              shouldPlay={isPlaying}
+              onPlaybackStatusUpdate={handlePlaybackStatusUpdate}
+              progressUpdateIntervalMillis={500}
+              rate={1.0}
+              volume={1.0}
+            />
+            {loading && (
+              <View style={styles.loadingOverlay}>
+                <ActivityIndicator size="large" color="#ea4335" />
+                <Text style={styles.loadingText}>Conectando...</Text>
+              </View>
+            )}
+            <View style={styles.controlsOverlay}>
+              <TouchableOpacity style={styles.playButton} onPress={togglePlayPause}>
+                <Text style={styles.playIcon}>{isPlaying ? '⏸' : '▶'}</Text>
+              </TouchableOpacity>
+            </View>
           </View>
           <View style={styles.info}>
             <Text style={styles.infoText}>{currentChannel.name}</Text>
@@ -100,27 +109,55 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     overflow: 'hidden',
   },
-  playerPlaceholder: {
+  videoWrapper: {
     flex: 1,
     width: '100%',
+    backgroundColor: '#000',
+    position: 'relative',
+  },
+  video: {
+    width: '100%',
+    height: '100%',
+  },
+  loadingOverlay: {
+    position: 'absolute',
+    inset: 0,
+    backgroundColor: 'rgba(0, 0, 0, 0.7)',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#000',
+    zIndex: 5,
   },
-  channelInfo: {
+  loadingText: {
     color: '#fff',
-    fontSize: 18,
-    fontWeight: 'bold',
-    marginBottom: 8,
-  },
-  streamInfo: {
-    color: '#9ca3af',
+    marginTop: 12,
     fontSize: 14,
+  },
+  controlsOverlay: {
+    position: 'absolute',
+    inset: 0,
+    justifyContent: 'center',
+    alignItems: 'center',
+    zIndex: 4,
+  },
+  playButton: {
+    width: 60,
+    height: 60,
+    borderRadius: 30,
+    backgroundColor: 'rgba(0, 0, 0, 0.6)',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderWidth: 2,
+    borderColor: 'rgba(255, 255, 255, 0.3)',
+  },
+  playIcon: {
+    fontSize: 28,
+    color: '#fff',
   },
   info: {
     padding: 12,
     borderTopWidth: 1,
     borderTopColor: '#333',
+    backgroundColor: '#1a1a1a',
   },
   infoText: {
     color: '#fff',
@@ -136,10 +173,6 @@ const styles = StyleSheet.create({
     color: '#9ca3af',
     fontSize: 16,
   },
-  loadingText: {
-    color: '#fff',
-    marginTop: 12,
-  },
   errorContainer: {
     width: '100%',
     aspectRatio: 16 / 9,
@@ -152,6 +185,11 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontSize: 16,
     textAlign: 'center',
-    paddingHorizontal: 20,
+    marginBottom: 8,
+  },
+  errorSubtext: {
+    color: '#f87171',
+    fontSize: 14,
+    textAlign: 'center',
   },
 });
